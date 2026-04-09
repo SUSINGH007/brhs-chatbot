@@ -143,6 +143,14 @@ app.add_middleware(
 )
 
 
+from fastapi.responses import RedirectResponse
+
+@app.get("/")
+async def root():
+    """Redirect root to the chat widget."""
+    return RedirectResponse(url="/static/widget.html")
+
+
 class ChatRequest(BaseModel):
     message: str
     history: list[dict] = []   # [{role, content}, …]
